@@ -1,0 +1,148 @@
+.success-screen {
+  position: relative;
+  flex: 1;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.success-glow {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, oklch(88% 0.21 125 / 0.3), transparent 70%);
+  filter: blur(10px);
+}
+
+.success-content {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  gap: 20px;
+}
+
+.success-check {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: var(--accent-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 40px -10px oklch(88% 0.21 125 / 0.45);
+}
+
+.success-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.success-title {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.success-subtitle {
+  margin: 0;
+  font-size: 15px;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.success-subtitle strong {
+  color: var(--text);
+}
+
+.success-tracks {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.success-track {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+}
+
+.success-thumb {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  object-fit: cover;
+  background: var(--bg-raised);
+}
+
+.success-track-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.success-track-title {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.success-track-meta {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.success-footer {
+  padding: 16px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.success-open {
+  height: 54px;
+  border-radius: 16px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  background: var(--accent);
+  color: var(--accent-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.success-open:hover {
+  color: var(--accent-ink);
+}
+
+.success-note {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}

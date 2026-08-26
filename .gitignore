@@ -1,0 +1,14 @@
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+.env
+.env.*
+!.env.example
+
+# server runtime data — OAuth token and who's submitted what
+server/data/*.json
+
+.DS_Store
+*.log
