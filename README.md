@@ -24,12 +24,17 @@ friends never touch your Google account — only you authorize once.
    contents of [`supabase/schema.sql`](supabase/schema.sql), and run it.
    This creates two tables (`youtube_auth`, `submissions`) and the Postgres
    functions the API uses to enforce the 2-song limit atomically.
-3. Go to **Project Settings > API** and copy:
-   - **Project URL** → `SUPABASE_URL`
-   - **service_role secret** key → `SUPABASE_SERVICE_ROLE_KEY` (not the
-     `anon` public key — the service-role key is what lets the API routes
-     read/write past Row Level Security; never expose it to the browser or
-     prefix it with `VITE_`)
+3. Get your credentials from **Project Settings** (Supabase has split this
+   across two pages recently):
+   - **Data API** page → the **API URL** shown there → `SUPABASE_URL`
+   - **API Keys** page → the **Secret key** (`sb_secret_...` on newer
+     projects) or the legacy **service_role** key on older ones →
+     `SUPABASE_SERVICE_ROLE_KEY`. Either works the same way with this app —
+     both bypass Row Level Security, which is what lets the API routes
+     read/write. Do **not** use the **Publishable**/`anon` key — that one's
+     meant to be public and would let anyone bypass the 2-song limit if
+     used here. Never expose the secret/service_role key to the browser or
+     prefix it with `VITE_`.
 
 ## 2. Create a Google Cloud project + OAuth credentials
 
