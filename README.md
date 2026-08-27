@@ -45,19 +45,23 @@ playlist. This is a one-time setup only you do — friends never touch Google.
    create a new project (or pick an existing one).
 2. In the sidebar, go to **APIs & Services > Library**, search for
    **YouTube Data API v3**, and click **Enable**.
-3. Go to **APIs & Services > OAuth consent screen**.
-   - User type: **External** (unless you have a Google Workspace org).
-   - Fill in an app name (e.g. "Playlist Picker"), your email for support
-     and developer contact.
-   - You can skip adding scopes on the **Scopes** step — the app requests
-     them directly.
-   - **Publishing status: click "Publish App" to move it to "In
-     production."** While an app stays in "Testing," Google expires its
-     refresh token every 7 days, which would silently break the app for
-     your friends a week in. "In production" removes that expiry. You'll
-     still see an "unverified app" warning during consent (expected and
-     harmless for a personal app with this scope) — Google's full
-     verification review isn't required unless you want the warning gone.
+3. Go to **APIs & Services > Google Auth Platform** (this used to be called
+   "OAuth consent screen" — same thing, Google renamed it).
+   - On first visit it'll walk you through **Branding**: user type
+     **External** (unless you have a Google Workspace org), an app name
+     (e.g. "Playlist Picker"), your email for support and developer contact.
+   - You can skip adding scopes — the app requests them directly.
+   - Go to the **Audience** tab. **Click "Publish App" to move Publishing
+     status from "Testing" to "In production."** This matters for two
+     reasons: while in "Testing," only accounts explicitly added under
+     "Test users" on this same tab can complete the OAuth flow at all (a
+     `403: access_denied` otherwise) — and even for a test user, Google
+     expires the refresh token every 7 days, which would silently break the
+     app for your friends a week in. "In production" removes both
+     restrictions. You'll still see an "unverified app" warning during
+     consent (expected and harmless for a personal app with this scope) —
+     Google's full verification review isn't required unless you want the
+     warning gone.
 4. Go to **APIs & Services > Credentials > Create Credentials > OAuth client
    ID**.
    - Application type: **Web application**.
