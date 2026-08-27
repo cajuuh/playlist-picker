@@ -1,15 +1,17 @@
 {
-  "name": "client",
+  "name": "playlist-picker",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "oxlint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.112.4",
+    "googleapis": "^176.0.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },

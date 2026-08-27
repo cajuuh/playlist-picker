@@ -1,10 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import { google } from 'googleapis';
+import { supabase } from './supabase.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const TOKEN_FILE = path.join(__dirname, '..', 'data', 'token.json');
 const SCOPES = ['https://www.googleapis.com/auth/youtube'];
 
 const oauth2Client = new google.auth.OAuth2(
@@ -12,33 +8,42 @@ const oauth2Client = new google.auth.OAuth2(
   process.env.GOOGLE_CLIENT_SECRET,
   process.env.GOOGLE_REDIRECT_URI
 );
-
 const youtube = google.youtube({ version: 'v3', auth: oauth2Client });
 
-function readTokenFile() {
-  try {
-    return JSON.parse(fs.readFileSync(TOKEN_FILE, 'utf-8'));
-  } catch {
-    return null;
-  }
+// Serverless functions are stateless between invocations, so this cache is
+// just a same-invocation optimization — Supabase is the actual source of
+// truth and gets re-read on every cold start via ensureLoaded().
+let cachedTokens = null;
+let loaded = false;
+
+async function ensureLoaded() {
+  if (loaded) return;
+  const { data, error } = await supabase
+    .from('youtube_auth')
+    .select('tokens')
+    .eq('id', 1)
+    .maybeSingle();
+  if (error) throw error;
+  cachedTokens = data?.tokens || null;
+  if (cachedTokens) oauth2Client.setCredentials(cachedTokens);
+  loaded = true;
 }
 
-function writeTokenFile(tokens) {
-  fs.mkdirSync(path.dirname(TOKEN_FILE), { recursive: true });
-  fs.writeFileSync(TOKEN_FILE, JSON.stringify(tokens, null, 2));
+async function persistTokens(tokens) {
+  cachedTokens = { ...(cachedTokens || {}), ...tokens };
+  oauth2Client.setCredentials(cachedTokens);
+  const { error } = await supabase
+    .from('youtube_auth')
+    .upsert({ id: 1, tokens: cachedTokens, updated_at: new Date().toISOString() });
+  if (error) console.error('Failed to persist YouTube token:', error.message);
 }
 
-// Google may only send a refresh_token on the very first consent; merge so
-// later access-token-only refreshes don't clobber the stored refresh_token.
+// Google may only send a refresh_token on the very first consent; merging
+// via persistTokens means a later access-token-only refresh doesn't
+// clobber the stored refresh_token.
 oauth2Client.on('tokens', (tokens) => {
-  const existing = readTokenFile() || {};
-  writeTokenFile({ ...existing, ...tokens });
+  persistTokens(tokens).catch((err) => console.error('Token persist failed:', err.message));
 });
-
-const stored = readTokenFile();
-if (stored) {
-  oauth2Client.setCredentials(stored);
-}
 
 export function getAuthUrl() {
   return oauth2Client.generateAuthUrl({
@@ -51,10 +56,11 @@ export function getAuthUrl() {
 export async function handleOAuthCallback(code) {
   const { tokens } = await oauth2Client.getToken(code);
   oauth2Client.setCredentials(tokens);
-  writeTokenFile(tokens);
+  await persistTokens(tokens);
 }
 
-export function isAuthorized() {
+export async function isAuthorized() {
+  await ensureLoaded();
   return Boolean(oauth2Client.credentials?.refresh_token);
 }
 
@@ -70,6 +76,7 @@ function formatDuration(iso) {
 }
 
 export async function searchTracks(query) {
+  await ensureLoaded();
   const searchRes = await youtube.search.list({
     part: ['snippet'],
     q: query,
@@ -100,6 +107,7 @@ export async function searchTracks(query) {
 }
 
 export async function getVideoDetails(videoId) {
+  await ensureLoaded();
   const res = await youtube.videos.list({ part: ['snippet'], id: [videoId] });
   const item = res.data.items?.[0];
   if (!item) throw new Error('Video not found');
@@ -112,6 +120,7 @@ export async function getVideoDetails(videoId) {
 }
 
 export async function addToPlaylist(videoId) {
+  await ensureLoaded();
   await youtube.playlistItems.insert({
     part: ['snippet'],
     requestBody: {
@@ -124,6 +133,7 @@ export async function addToPlaylist(videoId) {
 }
 
 export async function getPlaylistInfo() {
+  await ensureLoaded();
   const playlistId = process.env.YOUTUBE_PLAYLIST_ID;
   const res = await youtube.playlists.list({ part: ['snippet'], id: [playlistId] });
   const item = res.data.items?.[0];

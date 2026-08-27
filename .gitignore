@@ -7,8 +7,7 @@ dist-ssr/
 .env.*
 !.env.example
 
-# server runtime data — OAuth token and who's submitted what
-server/data/*.json
+.vercel
 
 .DS_Store
 *.log
