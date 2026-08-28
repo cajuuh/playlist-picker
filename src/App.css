@@ -14,11 +14,128 @@
   background: var(--bg);
 }
 
-.app-loading {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-muted);
-  font-size: 14px;
+/* The brand pane is desktop-only. React still mounts it below the breakpoint,
+   so it's hidden here rather than conditionally rendered by width. */
+.brand-pane {
+  display: none;
+}
+
+/* ===== Desktop: split the viewport into a poster pane + a content column ===== */
+@media (min-width: 1024px) {
+  .app-shell--split {
+    justify-content: flex-start;
+  }
+
+  .app-shell--split .app-frame {
+    flex: 0 0 clamp(480px, 38vw, 560px);
+    max-width: none;
+    border-left: 1px solid var(--border);
+  }
+
+  .brand-pane {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(48px, 6vw, 96px);
+    background: linear-gradient(155deg, oklch(20% 0.035 330), oklch(15% 0.02 280) 70%);
+  }
+
+  .brand-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    max-width: 440px;
+  }
+
+  .brand-cover {
+    width: 152px;
+    height: 152px;
+    border-radius: 28px;
+    background: linear-gradient(135deg, oklch(72% 0.23 350), oklch(60% 0.2 320));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 30px 70px -18px oklch(72% 0.23 350 / 0.55);
+  }
+
+  .brand-title {
+    font-size: clamp(32px, 3.4vw, 46px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .brand-tagline {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+
+  .brand-aurora {
+    position: absolute;
+    border-radius: 50%;
+    will-change: transform;
+    animation: brand-aurora-drift 22s ease-in-out infinite;
+  }
+
+  .brand-aurora--a {
+    top: -140px;
+    right: -80px;
+    width: 440px;
+    height: 440px;
+    background: radial-gradient(circle, oklch(72% 0.23 350 / 0.42), transparent 70%);
+    filter: blur(55px);
+  }
+
+  .brand-aurora--b {
+    bottom: -180px;
+    left: -100px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, oklch(88% 0.21 125 / 0.26), transparent 70%);
+    filter: blur(65px);
+    animation-duration: 27s;
+    animation-delay: -7s;
+  }
+
+  .brand-aurora--c {
+    top: 34%;
+    left: 28%;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, oklch(72% 0.23 350 / 0.24), transparent 70%);
+    filter: blur(60px);
+    animation-duration: 20s;
+    animation-delay: -12s;
+  }
+
+  @keyframes brand-aurora-drift {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    33% {
+      transform: translate3d(4%, -5%, 0) scale(1.1);
+    }
+    66% {
+      transform: translate3d(-4%, 4%, 0) scale(0.92);
+    }
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: reduce) {
+  .brand-aurora {
+    animation: none;
+  }
 }

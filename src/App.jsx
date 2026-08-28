@@ -1,5 +1,6 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { getPlaylistInfo, getStatus, submitPicks } from './api.js';
+import Intro, { INTRO_MIN_MS, INTRO_EXIT_MS } from './screens/Intro.jsx';
 import Landing from './screens/Landing.jsx';
 import Search from './screens/Search.jsx';
 import Review from './screens/Review.jsx';
@@ -28,8 +29,23 @@ function storeFriend(friend) {
   }
 }
 
+// Decides which screen a known friend lands on. Shared by the instant "Let's go"
+// join and the delayed boot sequence so the two can't silently diverge.
+async function determineRoute(person) {
+  try {
+    const status = await getStatus(person.phone);
+    if (status.remaining <= 0) {
+      return { screen: 'locked', lockedTracks: status.tracks };
+    }
+    return { screen: 'search' };
+  } catch {
+    return { screen: 'search' };
+  }
+}
+
 export default function App() {
   const [screen, setScreen] = useState('loading');
+  const [introExiting, setIntroExiting] = useState(false);
   const [playlist, setPlaylist] = useState(null);
   const [friend, setFriend] = useState(null);
   const [lockedTracks, setLockedTracks] = useState([]);
@@ -38,45 +54,64 @@ export default function App() {
   const [submitError, setSubmitError] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
-  const routeAfterIdentify = useCallback(async (person) => {
-    try {
-      const status = await getStatus(person.phone);
-      if (status.remaining <= 0) {
-        setLockedTracks(status.tracks);
-        setScreen('locked');
-      } else {
-        setScreen('search');
-      }
-    } catch {
-      setScreen('search');
-    }
-  }, []);
-
   useEffect(() => {
+    let cancelled = false;
+    const startedAt = Date.now();
+
     (async () => {
+      let target = 'landing';
+      let nextPlaylist = null;
+      let nextFriend = null;
+      let nextLockedTracks = [];
+
       try {
-        const info = await getPlaylistInfo();
-        setPlaylist(info);
+        nextPlaylist = await getPlaylistInfo();
       } catch {
-        setScreen('unavailable');
-        return;
+        target = 'unavailable';
       }
 
-      const stored = loadStoredFriend();
-      if (stored?.name && stored?.phone) {
-        setFriend(stored);
-        await routeAfterIdentify(stored);
-      } else {
-        setScreen('landing');
+      if (target !== 'unavailable') {
+        const stored = loadStoredFriend();
+        if (stored?.name && stored?.phone) {
+          nextFriend = stored;
+          const route = await determineRoute(stored);
+          target = route.screen;
+          if (route.lockedTracks) nextLockedTracks = route.lockedTracks;
+        }
       }
+
+      // Hold the intro in its looping steady state until it has been up for at
+      // least INTRO_MIN_MS — on a slow fetch it just keeps drifting, never freezes.
+      const elapsed = Date.now() - startedAt;
+      if (elapsed < INTRO_MIN_MS) {
+        await new Promise((resolve) => setTimeout(resolve, INTRO_MIN_MS - elapsed));
+      }
+      if (cancelled) return;
+
+      setPlaylist(nextPlaylist);
+      if (nextFriend) setFriend(nextFriend);
+      if (nextLockedTracks.length) setLockedTracks(nextLockedTracks);
+      setIntroExiting(true);
+
+      setTimeout(() => {
+        if (cancelled) return;
+        setScreen(target);
+        setIntroExiting(false);
+      }, INTRO_EXIT_MS);
     })();
-  }, [routeAfterIdentify]);
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   async function handleJoin({ name, phone }) {
     const person = { name: name.trim(), phone: phone.trim() };
     storeFriend(person);
     setFriend(person);
-    await routeAfterIdentify(person);
+    const route = await determineRoute(person);
+    if (route.lockedTracks) setLockedTracks(route.lockedTracks);
+    setScreen(route.screen);
   }
 
   function handleReview(tracks) {
@@ -113,10 +148,34 @@ export default function App() {
     }
   }
 
+  // On desktop the layout splits into a poster pane + a content column. The
+  // poster pane needs the playlist to have loaded and isn't shown for the
+  // pre-app states (intro, host-not-ready).
+  const showBrand = !!playlist && screen !== 'loading' && screen !== 'unavailable';
+
   return (
-    <div className="app-shell">
-      <div className="app-frame">
-        {screen === 'loading' && <div className="app-loading">Loading…</div>}
+    <div className={`app-shell${showBrand ? ' app-shell--split' : ''}`}>
+      {showBrand && (
+        <aside className="brand-pane">
+          <div className="brand-aurora brand-aurora--a" />
+          <div className="brand-aurora brand-aurora--b" />
+          <div className="brand-aurora brand-aurora--c" />
+          <div className="brand-inner">
+            <div className="brand-cover">
+              <svg width="72" height="72" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18V6l11-2v12" stroke="oklch(98% 0.01 280)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="6" cy="18" r="3" stroke="oklch(98% 0.01 280)" strokeWidth="1.6" />
+                <circle cx="17" cy="16" r="3" stroke="oklch(98% 0.01 280)" strokeWidth="1.6" />
+              </svg>
+            </div>
+            <p className="display brand-title">{playlist?.name || 'The Playlist'}</p>
+            <p className="brand-tagline">Everyone gets 2 picks. Make them count.</p>
+          </div>
+        </aside>
+      )}
+
+      <main className="app-frame">
+        {screen === 'loading' && <Intro exiting={introExiting} />}
         {screen === 'unavailable' && <Unavailable />}
         {screen === 'landing' && <Landing playlist={playlist} onJoin={handleJoin} />}
         {screen === 'search' && (
@@ -140,7 +199,7 @@ export default function App() {
           <Success playlist={playlist} tracks={submitResult?.added || selectedTracks} />
         )}
         {screen === 'locked' && <Locked playlist={playlist} tracks={lockedTracks} />}
-      </div>
+      </main>
     </div>
   );
 }

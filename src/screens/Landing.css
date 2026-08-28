@@ -45,6 +45,12 @@
   margin-top: 20px;
 }
 
+/* Shown only on desktop, where the playlist cover/title move to the brand pane
+   and the right column needs its own heading. */
+.landing-desktop-heading {
+  display: none;
+}
+
 .landing-playlist {
   display: flex;
   flex-direction: column;
@@ -149,4 +155,35 @@
 
 .landing-submit:disabled {
   opacity: 0.5;
+}
+
+@media (min-width: 1024px) {
+  .landing-glow-top,
+  .landing-glow-bottom,
+  .landing-playlist {
+    display: none;
+  }
+
+  .landing-content {
+    justify-content: center;
+    padding: 48px 44px;
+  }
+
+  .landing-kicker {
+    margin-top: 0;
+    text-align: left;
+  }
+
+  .landing-desktop-heading {
+    display: block;
+    margin-top: 12px;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .landing-form {
+    margin-top: 0;
+    padding-top: 32px;
+  }
 }

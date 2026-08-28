@@ -1,0 +1,114 @@
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  overflow: hidden;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-aurora {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation:
+    intro-aurora-in 500ms ease-out forwards,
+    intro-aurora-drift 20s ease-in-out infinite;
+}
+
+.intro-aurora--a {
+  top: -18%;
+  right: -12%;
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle, oklch(72% 0.23 350 / 0.45), transparent 70%);
+  filter: blur(50px);
+  animation-delay: 0ms, 500ms;
+}
+
+.intro-aurora--b {
+  bottom: -22%;
+  left: -14%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, oklch(88% 0.21 125 / 0.3), transparent 70%);
+  filter: blur(60px);
+  animation-delay: 80ms, 580ms;
+}
+
+.intro-aurora--c {
+  top: 28%;
+  left: 18%;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, oklch(72% 0.23 350 / 0.28), transparent 70%);
+  filter: blur(55px);
+  animation-delay: 160ms, 660ms;
+}
+
+.intro-mark {
+  position: relative;
+  width: 112px;
+  height: 112px;
+  border-radius: 26px;
+  background: linear-gradient(135deg, oklch(72% 0.23 350), oklch(60% 0.2 320));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 50px -12px oklch(72% 0.23 350 / 0.6);
+  opacity: 0;
+  transform: scale(0.7);
+  animation: intro-mark-in 450ms cubic-bezier(0.16, 1, 0.3, 1) 200ms forwards;
+}
+
+.intro--exiting {
+  animation: intro-exit var(--intro-exit-ms, 280ms) ease-in forwards;
+}
+
+@keyframes intro-aurora-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes intro-aurora-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(4%, -3%, 0) scale(1.08);
+  }
+  66% {
+    transform: translate3d(-3%, 4%, 0) scale(0.95);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes intro-mark-in {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes intro-exit {
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-aurora {
+    animation: intro-aurora-in 400ms ease-out forwards;
+  }
+
+  .intro-mark {
+    transform: none;
+    animation: intro-aurora-in 400ms ease-out 150ms forwards;
+  }
+}
