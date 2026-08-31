@@ -9,5 +9,7 @@ dist-ssr/
 
 .vercel
 
+.claude/
+
 .DS_Store
 *.log

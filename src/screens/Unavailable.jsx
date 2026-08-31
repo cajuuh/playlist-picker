@@ -10,10 +10,10 @@ export default function Unavailable() {
           <circle cx="17" cy="16" r="3" stroke="var(--text-muted)" strokeWidth="1.6" />
         </svg>
       </div>
-      <h1 className="display unavailable-title">Not quite ready yet</h1>
+      <h1 className="display unavailable-title">Ainda não tá pronto</h1>
       <p className="unavailable-text">
-        The host hasn't finished connecting their YouTube account. Ask them to run through
-        setup, then check back.
+        O anfitrião ainda não terminou de conectar a conta do YouTube. Peça pra ele
+        finalizar e volte aqui depois.
       </p>
     </div>
   );
