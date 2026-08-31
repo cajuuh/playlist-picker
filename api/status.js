@@ -14,6 +14,6 @@ export default async function handler(req, res) {
     });
   } catch (err) {
     console.error('Status lookup failed:', err.message);
-    res.status(502).json({ error: 'Could not load status' });
+    res.status(502).json({ error: 'Não foi possível carregar seu status' });
   }
 }

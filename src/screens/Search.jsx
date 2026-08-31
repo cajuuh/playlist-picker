@@ -52,9 +52,9 @@ export default function Search({ initialSelected, onReview }) {
     <div className="search-screen">
       <div className="search-header">
         <div className="search-header-row">
-          <span className="display search-title">Find a song</span>
+          <span className="display search-title">Encontre uma música</span>
           <span className={`search-counter ${full ? 'search-counter--full' : ''}`}>
-            {selected.length}/2 selected
+            {selected.length}/2 escolhidas
           </span>
         </div>
         <div className="search-bar">
@@ -64,7 +64,7 @@ export default function Search({ initialSelected, onReview }) {
           </svg>
           <input
             type="text"
-            placeholder="Search YouTube Music"
+            placeholder="Buscar no YouTube Music"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             autoFocus
@@ -73,13 +73,13 @@ export default function Search({ initialSelected, onReview }) {
       </div>
 
       <div className="search-results">
-        {loading && <p className="search-status">Searching…</p>}
+        {loading && <p className="search-status">Buscando…</p>}
         {!loading && error && <p className="search-status search-status--error">{error}</p>}
         {!loading && !error && query.trim().length >= 2 && results.length === 0 && (
-          <p className="search-status">No results for "{query.trim()}"</p>
+          <p className="search-status">Nada encontrado para "{query.trim()}"</p>
         )}
         {!loading && query.trim().length < 2 && (
-          <p className="search-status">Start typing to search for a song or artist.</p>
+          <p className="search-status">Comece a digitar pra buscar uma música ou artista.</p>
         )}
 
         {results.map((track) => {
@@ -129,7 +129,7 @@ export default function Search({ initialSelected, onReview }) {
 
       <div className="search-footer">
         <div className="search-chips">
-          {selected.length === 0 && <span className="search-chips-hint">Tap up to 2 songs above</span>}
+          {selected.length === 0 && <span className="search-chips-hint">Toque em até 2 músicas acima</span>}
           {selected.map((track) => (
             <div key={track.videoId} className="search-chip">
               <span>{track.title}</span>
@@ -146,7 +146,7 @@ export default function Search({ initialSelected, onReview }) {
           disabled={!full}
           onClick={() => onReview(selected)}
         >
-          Review picks
+          Revisar escolhas
         </button>
       </div>
     </div>

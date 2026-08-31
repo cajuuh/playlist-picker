@@ -168,8 +168,8 @@ export default function App() {
                 <circle cx="17" cy="16" r="3" stroke="oklch(98% 0.01 280)" strokeWidth="1.6" />
               </svg>
             </div>
-            <p className="display brand-title">{playlist?.name || 'The Playlist'}</p>
-            <p className="brand-tagline">Everyone gets 2 picks. Make them count.</p>
+            <p className="display brand-title">{playlist?.name || 'A Playlist'}</p>
+            <p className="brand-tagline">Cada um escolhe 2 músicas. Capriche.</p>
           </div>
         </aside>
       )}

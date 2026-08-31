@@ -11,6 +11,6 @@ export default async function handler(req, res) {
     res.status(200).json(info);
   } catch (err) {
     console.error('Failed to load playlist info:', err.message);
-    res.status(502).json({ error: 'Could not load playlist info' });
+    res.status(502).json({ error: 'Não foi possível carregar a playlist' });
   }
 }

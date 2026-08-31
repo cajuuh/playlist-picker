@@ -11,11 +11,11 @@ export default function Success({ playlist, tracks }) {
           </svg>
         </div>
         <div className="success-text">
-          <h1 className="display success-title">You're on the list</h1>
+          <h1 className="display success-title">Você tá na lista</h1>
           <p className="success-subtitle">
-            Added to
+            Adicionadas a
             <br />
-            <strong>{playlist?.name || 'the playlist'}</strong>
+            <strong>{playlist?.name || 'a playlist'}</strong>
           </p>
         </div>
 
@@ -39,11 +39,11 @@ export default function Success({ playlist, tracks }) {
       <div className="success-footer">
         {playlist?.url && (
           <a className="success-open" href={playlist.url} target="_blank" rel="noreferrer">
-            Open in YouTube Music
+            Abrir no YouTube Music
           </a>
         )}
         <span className="success-note">
-          You've used both of your picks. See you on the dance floor.
+          Você já usou suas 2 escolhas. Te vejo na pista.
         </span>
       </div>
     </div>

@@ -5,15 +5,15 @@ export default function Locked({ playlist, tracks }) {
     <div className="locked-screen">
       <div className="locked-header">
         <div className="locked-header-row">
-          <span className="display locked-title">Find a song</span>
-          <span className="locked-counter">2/2 selected</span>
+          <span className="display locked-title">Encontre uma música</span>
+          <span className="locked-counter">2/2 escolhidas</span>
         </div>
         <div className="locked-bar">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <circle cx="11" cy="11" r="7" stroke="var(--text-muted)" strokeWidth="1.8" />
             <path d="m20 20-3.5-3.5" stroke="var(--text-muted)" strokeWidth="1.8" strokeLinecap="round" />
           </svg>
-          <span>Search is closed for you</span>
+          <span>A busca fechou pra você</span>
         </div>
       </div>
 
@@ -25,10 +25,10 @@ export default function Locked({ playlist, tracks }) {
           </svg>
         </div>
         <div className="locked-text">
-          <h1 className="display locked-heading">Your picks are locked in</h1>
+          <h1 className="display locked-heading">Suas escolhas estão confirmadas</h1>
           <p className="locked-subtitle">
-            You already added your 2 songs to {playlist?.name || 'the playlist'}. Thanks for the
-            picks — see you on the dance floor.
+            Você já adicionou suas 2 músicas a {playlist?.name || 'a playlist'}. Valeu pelas
+            escolhas — te vejo na pista.
           </p>
         </div>
 
@@ -56,7 +56,7 @@ export default function Locked({ playlist, tracks }) {
       {playlist?.url && (
         <div className="locked-footer">
           <a className="locked-open" href={playlist.url} target="_blank" rel="noreferrer">
-            Open playlist in YouTube Music
+            Abrir playlist no YouTube Music
           </a>
         </div>
       )}

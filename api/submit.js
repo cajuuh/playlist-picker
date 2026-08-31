@@ -6,14 +6,14 @@ export default async function handler(req, res) {
 
   const { phone, name, videoIds } = req.body || {};
   if (!phone || !name) {
-    return res.status(400).json({ error: 'Name and phone are required' });
+    return res.status(400).json({ error: 'Nome e telefone são obrigatórios' });
   }
   const ids = Array.isArray(videoIds) ? [...new Set(videoIds)].filter(Boolean) : [];
   if (ids.length === 0 || ids.length > 2) {
-    return res.status(400).json({ error: 'Pick 1 or 2 songs' });
+    return res.status(400).json({ error: 'Escolha 1 ou 2 músicas' });
   }
   if (!(await isAuthorized())) {
-    return res.status(503).json({ error: "This playlist isn't ready yet — ask the host to finish setup." });
+    return res.status(503).json({ error: 'A playlist ainda não está pronta — peça pro anfitrião finalizar.' });
   }
 
   let reserved;
@@ -21,10 +21,10 @@ export default async function handler(req, res) {
     reserved = await reserveSlots(phone, name, ids.length);
   } catch (err) {
     console.error('Reservation check failed:', err.message);
-    return res.status(502).json({ error: 'Something went wrong, try again' });
+    return res.status(502).json({ error: 'Algo deu errado, tente de novo' });
   }
   if (!reserved) {
-    return res.status(409).json({ error: "You've already used your picks" });
+    return res.status(409).json({ error: 'Você já usou suas escolhas' });
   }
 
   const added = [];
@@ -43,7 +43,7 @@ export default async function handler(req, res) {
   }
 
   if (added.length === 0) {
-    return res.status(502).json({ error: 'Could not add your songs, try again' });
+    return res.status(502).json({ error: 'Não foi possível adicionar suas músicas, tente de novo' });
   }
 
   res.status(200).json({ added, failed });

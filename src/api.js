@@ -9,7 +9,7 @@ async function request(path, options = {}) {
   });
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
-    const error = new Error(data.error || 'Something went wrong');
+    const error = new Error(data.error || 'Algo deu errado');
     error.status = res.status;
     error.code = data.error;
     throw error;

@@ -22,8 +22,8 @@ export default function Landing({ playlist, onJoin }) {
       <div className="landing-glow-bottom" />
 
       <div className="landing-content">
-        <span className="landing-kicker">You're invited to add music</span>
-        <h2 className="display landing-desktop-heading">Let's get you in</h2>
+        <span className="landing-kicker">Você foi convidado pra adicionar músicas</span>
+        <h2 className="display landing-desktop-heading">Bora começar</h2>
 
         <div className="landing-playlist">
           <div className="landing-cover">
@@ -33,16 +33,16 @@ export default function Landing({ playlist, onJoin }) {
               <circle cx="17" cy="16" r="3" stroke="oklch(98% 0.01 280)" strokeWidth="1.6" />
             </svg>
           </div>
-          <h1 className="display landing-title">{playlist?.name || 'The Playlist'}</h1>
-          <span className="landing-subtitle">Everyone gets 2 picks. Make them count.</span>
+          <h1 className="display landing-title">{playlist?.name || 'A Playlist'}</h1>
+          <span className="landing-subtitle">Cada um escolhe 2 músicas. Capriche.</span>
         </div>
 
         <form className="landing-form" onSubmit={handleSubmit}>
           <label className="landing-field">
-            <span>Your name</span>
+            <span>Seu nome</span>
             <input
               type="text"
-              placeholder="e.g. Marina"
+              placeholder="ex: Marina"
               value={name}
               onChange={(e) => setName(e.target.value)}
               autoComplete="name"
@@ -51,7 +51,7 @@ export default function Landing({ playlist, onJoin }) {
           </label>
 
           <label className="landing-field">
-            <span>Phone number</span>
+            <span>Telefone</span>
             <div className="landing-phone-input">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                 <path
@@ -63,7 +63,7 @@ export default function Landing({ playlist, onJoin }) {
               </svg>
               <input
                 type="tel"
-                placeholder="(555) 123-4567"
+                placeholder="(11) 91234-5678"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 autoComplete="tel"
@@ -71,12 +71,12 @@ export default function Landing({ playlist, onJoin }) {
               />
             </div>
             <span className="landing-hint">
-              Just so we know whose picks are whose — no verification code needed.
+              Só pra saber de quem é cada escolha — sem código de verificação.
             </span>
           </label>
 
           <button type="submit" className="landing-submit" disabled={!canSubmit}>
-            {submitting ? 'One sec…' : "Let's go"}
+            {submitting ? 'Só um segundo…' : 'Bora'}
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
               <path d="M5 12h14M13 6l6 6-6 6" stroke="var(--accent-ink)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
