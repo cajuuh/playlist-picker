@@ -22,7 +22,7 @@ export default function Landing({ playlist, onJoin }) {
       <div className="landing-glow-bottom" />
 
       <div className="landing-content">
-        <span className="landing-kicker">Você foi convidado pra colocar música</span>
+        <span className="landing-kicker">Você foi convidado pra adicionar músicas</span>
         <h2 className="display landing-desktop-heading">Bora começar</h2>
 
         <div className="landing-playlist">
