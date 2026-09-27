@@ -1,5 +1,12 @@
 # Playlist Picker
 
+![version](https://img.shields.io/badge/version-0.0.0-blue)
+![react](https://img.shields.io/badge/react-19-61DAFB?logo=react&logoColor=white)
+![vite](https://img.shields.io/badge/vite-8-646CFF?logo=vite&logoColor=white)
+![supabase](https://img.shields.io/badge/supabase-postgres-3ECF8E?logo=supabase&logoColor=white)
+![youtube data api](https://img.shields.io/badge/youtube%20data%20api-v3-FF0000?logo=youtube&logoColor=white)
+![vercel](https://img.shields.io/badge/deploy-vercel-black?logo=vercel&logoColor=white)
+
 Let friends add 2 songs each to a YouTube Music playlist you own. Friends
 identify themselves with just a name + phone number (no OTP, no Google
 login) — the app itself holds *your* YouTube authorization and adds their
