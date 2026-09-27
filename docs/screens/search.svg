@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="700" viewBox="0 0 420 700">
+  <defs>
+    <linearGradient id="cover" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7c4dff"/>
+      <stop offset="1" stop-color="#ff6bcb"/>
+    </linearGradient>
+    <linearGradient id="thumb1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8a3d"/><stop offset="1" stop-color="#ff5f5f"/></linearGradient>
+    <linearGradient id="thumb2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3ddc97"/><stop offset="1" stop-color="#2a9d8f"/></linearGradient>
+    <linearGradient id="thumb3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4ea1ff"/><stop offset="1" stop-color="#7c4dff"/></linearGradient>
+    <linearGradient id="thumb4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd23d"/><stop offset="1" stop-color="#ff8a3d"/></linearGradient>
+  </defs>
+
+  <rect x="10" y="10" width="400" height="680" rx="28" fill="#16151b" stroke="#38343f"/>
+
+  <!-- header -->
+  <rect x="10" y="10" width="400" height="60" rx="28" fill="#1c1a21"/>
+  <rect x="10" y="42" width="400" height="28" fill="#1c1a21"/>
+  <rect x="30" y="27" width="30" height="30" rx="8" fill="url(#cover)"/>
+  <text x="70" y="46" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#f7f6f8">Sexta de Verão</text>
+  <rect x="345" y="28" width="42" height="24" rx="12" fill="#2a2731" stroke="#38343f"/>
+  <text x="366" y="44" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#a7a3ac">1/2</text>
+
+  <!-- search bar -->
+  <rect x="30" y="90" width="290" height="42" rx="14" fill="#2a2731" stroke="#38343f"/>
+  <circle cx="52" cy="111" r="6.5" fill="none" stroke="#a7a3ac" stroke-width="1.6"/>
+  <path d="M57 116l5 5" stroke="#a7a3ac" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="68" y="116" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#f7f6f8">ai se eu te pego</text>
+
+  <!-- results -->
+  <g font-family="Helvetica, Arial, sans-serif">
+    <!-- row 1 selected -->
+    <rect x="30" y="146" width="290" height="56" rx="14" fill="#2a2731" stroke="#ff5fa8" stroke-width="1.4"/>
+    <rect x="42" y="156" width="36" height="36" rx="8" fill="url(#thumb1)"/>
+    <text x="88" y="171" font-size="13" font-weight="700" fill="#f7f6f8">Ai Se Eu Te Pego</text>
+    <text x="88" y="187" font-size="11" fill="#a7a3ac">Michel Teló · 2:58</text>
+    <circle cx="298" cy="174" r="11" fill="#ff5fa8"/>
+    <path d="M293 174l3.5 3.5L303 170" stroke="#2a0e1c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+    <!-- row 2 -->
+    <rect x="30" y="212" width="290" height="56" rx="14" fill="#201e26" stroke="#38343f"/>
+    <rect x="42" y="222" width="36" height="36" rx="8" fill="url(#thumb2)"/>
+    <text x="88" y="237" font-size="13" font-weight="700" fill="#f7f6f8">Evidências</text>
+    <text x="88" y="253" font-size="11" fill="#a7a3ac">Chitãozinho &amp; Xororó · 4:21</text>
+    <circle cx="298" cy="240" r="11" fill="none" stroke="#4a4552" stroke-width="1.6"/>
+
+    <!-- row 3 -->
+    <rect x="30" y="278" width="290" height="56" rx="14" fill="#201e26" stroke="#38343f"/>
+    <rect x="42" y="288" width="36" height="36" rx="8" fill="url(#thumb3)"/>
+    <text x="88" y="303" font-size="13" font-weight="700" fill="#f7f6f8">Numanice</text>
+    <text x="88" y="319" font-size="11" fill="#a7a3ac">Alcione · 3:35</text>
+    <circle cx="298" cy="306" r="11" fill="none" stroke="#4a4552" stroke-width="1.6"/>
+
+    <!-- row 4 -->
+    <rect x="30" y="344" width="290" height="56" rx="14" fill="#201e26" stroke="#38343f"/>
+    <rect x="42" y="354" width="36" height="36" rx="8" fill="url(#thumb4)"/>
+    <text x="88" y="369" font-size="13" font-weight="700" fill="#f7f6f8">Malandramente</text>
+    <text x="88" y="385" font-size="11" fill="#a7a3ac">Pixote · 3:05</text>
+    <circle cx="298" cy="372" r="11" fill="none" stroke="#4a4552" stroke-width="1.6"/>
+  </g>
+
+  <!-- picks rail -->
+  <rect x="332" y="90" width="68" height="310" rx="16" fill="#1c1a21" stroke="#38343f"/>
+  <text x="366" y="110" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#a7a3ac">ESCOLHAS</text>
+  <text x="366" y="124" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#f7f6f8">1/2</text>
+
+  <rect x="344" y="136" width="44" height="44" rx="10" fill="url(#thumb1)"/>
+  <rect x="344" y="188" width="44" height="44" rx="10" fill="none" stroke="#38343f" stroke-dasharray="3 3"/>
+  <text x="366" y="214" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#86818c">vaga</text>
+
+  <rect x="344" y="360" width="44" height="30" rx="15" fill="#2a2731"/>
+  <text x="366" y="379" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="700" fill="#6b6670">Revisar</text>
+</svg>

@@ -1,0 +1,114 @@
+.track-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3);
+  border-radius: var(--r-md);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  font: inherit;
+  transition: background var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease),
+    opacity var(--dur-1) var(--ease);
+}
+
+/* Interactive (search) rows */
+button.track-row {
+  cursor: pointer;
+}
+
+button.track-row:hover {
+  background: var(--bg-hover);
+}
+
+.track-row.is-selected {
+  background: var(--accent-soft);
+  border-color: oklch(72% 0.23 350 / 0.4);
+}
+
+.track-row.is-disabled:not(.is-selected) {
+  opacity: 0.4;
+}
+
+button.track-row:disabled {
+  cursor: not-allowed;
+}
+
+/* ===== Variants ===== */
+.track-row--list .track-row-thumb {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--r-sm);
+}
+
+.track-row--card {
+  padding: var(--space-4);
+  background: var(--bg-elevated);
+  border-color: var(--border);
+}
+
+.track-row--card .track-row-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--r-md);
+}
+
+.track-row--compact {
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-elevated);
+  border-color: var(--border);
+}
+
+.track-row--compact .track-row-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-sm);
+}
+
+/* ===== Parts ===== */
+.track-row-thumb {
+  flex-shrink: 0;
+  object-fit: cover;
+  background: var(--bg-raised);
+}
+
+.track-row-thumb--placeholder {
+  background: var(--bg-raised);
+}
+
+.track-row-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.track-row-title {
+  font-size: var(--fs-body);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-row--compact .track-row-title {
+  font-size: var(--fs-body-sm);
+}
+
+.track-row-meta {
+  font-size: var(--fs-body-sm);
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-row-trailing {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

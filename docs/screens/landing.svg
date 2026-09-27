@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="700" viewBox="0 0 420 700">
+  <defs>
+    <linearGradient id="cover" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7c4dff"/>
+      <stop offset="1" stop-color="#ff6bcb"/>
+    </linearGradient>
+    <linearGradient id="btn" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ff5fa8"/>
+      <stop offset="1" stop-color="#ff7fc0"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="10" y="10" width="400" height="680" rx="28" fill="#16151b" stroke="#38343f"/>
+
+  <rect x="160" y="150" width="100" height="100" rx="22" fill="url(#cover)"/>
+  <path d="M191 218 V184 l18 -4 v30" stroke="#f7f6f8" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <circle cx="187" cy="219" r="5" stroke="#f7f6f8" stroke-width="2.6" fill="none"/>
+  <circle cx="209" cy="214" r="5" stroke="#f7f6f8" stroke-width="2.6" fill="none"/>
+
+  <text x="210" y="280" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#a7a3ac">Você foi convidado pra adicionar músicas</text>
+  <text x="210" y="312" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="27" font-weight="700" fill="#f7f6f8">Sexta de Verão</text>
+  <text x="210" y="334" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#a7a3ac">Cada um escolhe 2 músicas · 24 na lista. Capriche.</text>
+
+  <text x="50" y="382" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#f7f6f8">Bora começar</text>
+
+  <text x="50" y="412" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#a7a3ac">Seu nome</text>
+  <rect x="50" y="420" width="320" height="46" rx="12" fill="#2a2731" stroke="#38343f"/>
+  <text x="66" y="449" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#f7f6f8">Marina</text>
+
+  <text x="50" y="490" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#a7a3ac">Telefone</text>
+  <rect x="50" y="498" width="320" height="46" rx="12" fill="#2a2731" stroke="#38343f"/>
+  <path d="M64 517.5c1.3 2.6 3.5 4.7 6.1 6.1l2-2c.3-.3.6-.4.9-.2 1 .4 2.1.5 3.3.5.5 0 .9.4.9.9v2.4c0 .5-.4.9-.9.9-8.9 0-16.1-7.2-16.1-16.1 0-.5.4-.9.9-.9h2.4c.5 0 .9.4.9.9 0 1.1.2 2.2.5 3.2.1.3 0 .7-.3.9l-1.9 1.4Z" fill="none" stroke="#a7a3ac" stroke-width="1.3"/>
+  <text x="86" y="527" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#f7f6f8">(11) 91234-5678</text>
+
+  <text x="50" y="562" font-family="Helvetica, Arial, sans-serif" font-size="9.5" fill="#86818c">Só pra saber de quem é cada escolha — sem código de verificação.</text>
+
+  <rect x="50" y="584" width="320" height="50" rx="25" fill="url(#btn)"/>
+  <text x="200" y="615" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#2a0e1c">Bora</text>
+  <path d="M330 604h16M338 597l8 8-8 8" stroke="#2a0e1c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>

@@ -1,0 +1,204 @@
+/* ===== Mobile / tablet: sticky bottom action bar ===== */
+.picks-rail {
+  position: sticky;
+  bottom: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5) calc(var(--space-5) + env(safe-area-inset-bottom));
+  background: var(--scrim);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-top: 1px solid var(--border);
+}
+
+.picks-rail-head {
+  display: none;
+}
+
+.picks-rail-list {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.picks-rail-list::-webkit-scrollbar {
+  display: none;
+}
+
+.pick-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+  max-width: 220px;
+  padding: 6px 6px 6px 8px;
+  border-radius: var(--r-pill);
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+}
+
+.pick-card--empty {
+  display: none;
+}
+
+.pick-card-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--bg-elevated);
+}
+
+.pick-card-text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.pick-card-title {
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pick-card-meta {
+  display: none;
+}
+
+.pick-card-remove {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--border-strong);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pick-card-remove:hover {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.picks-rail-cta {
+  height: 52px;
+  border-radius: var(--r-md);
+  border: none;
+  font-family: var(--font-display);
+  font-size: var(--fs-body);
+  font-weight: 700;
+  background: var(--accent);
+  color: var(--accent-ink);
+  transition: opacity var(--dur-1) var(--ease);
+}
+
+.picks-rail-cta:disabled {
+  background: var(--bg-raised);
+  color: var(--text-faint);
+}
+
+/* ===== Desktop: sticky right-hand rail ===== */
+@media (min-width: 1024px) {
+  .picks-rail {
+    position: sticky;
+    top: calc(var(--header-h) + var(--space-5));
+    bottom: auto;
+    align-self: start;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .picks-rail-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .picks-rail-title {
+    font-family: var(--font-display);
+    font-size: var(--fs-title);
+    font-weight: 600;
+  }
+
+  .picks-rail-count {
+    font-size: var(--fs-body-sm);
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .picks-rail-count.is-full {
+    color: var(--positive);
+  }
+
+  .picks-rail-list {
+    flex-direction: column;
+    gap: var(--space-3);
+    overflow: visible;
+  }
+
+  .pick-card {
+    max-width: none;
+    width: 100%;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    border-radius: var(--r-md);
+    background: var(--bg-raised);
+  }
+
+  .pick-card--empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 68px;
+    border-style: dashed;
+    background: transparent;
+    color: var(--text-faint);
+    font-size: var(--fs-body-sm);
+  }
+
+  .pick-card-thumb {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--r-sm);
+  }
+
+  .pick-card-title {
+    font-size: var(--fs-body-sm);
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+
+  .pick-card-meta {
+    display: block;
+    font-size: var(--fs-caption);
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .pick-card-remove {
+    width: 24px;
+    height: 24px;
+  }
+
+  .picks-rail-cta {
+    height: 54px;
+  }
+}

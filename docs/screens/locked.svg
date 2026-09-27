@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="700" viewBox="0 0 420 700">
+  <defs>
+    <linearGradient id="cover" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7c4dff"/>
+      <stop offset="1" stop-color="#ff6bcb"/>
+    </linearGradient>
+    <linearGradient id="thumb1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5f8a"/><stop offset="1" stop-color="#e0407d"/></linearGradient>
+    <linearGradient id="thumb2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4ea1ff"/><stop offset="1" stop-color="#7c4dff"/></linearGradient>
+  </defs>
+
+  <rect x="10" y="10" width="400" height="680" rx="28" fill="#16151b" stroke="#38343f"/>
+
+  <!-- header -->
+  <rect x="10" y="10" width="400" height="60" rx="28" fill="#1c1a21"/>
+  <rect x="10" y="42" width="400" height="28" fill="#1c1a21"/>
+  <rect x="30" y="27" width="30" height="30" rx="8" fill="url(#cover)"/>
+  <text x="70" y="46" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#f7f6f8">Sexta de Verão</text>
+
+  <circle cx="210" cy="150" r="34" fill="#201e26" stroke="#38343f"/>
+  <rect x="197" y="148" width="26" height="18" rx="4" fill="none" stroke="#a7a3ac" stroke-width="1.8"/>
+  <path d="M202 148v-6a8 8 0 0 1 16 0v6" stroke="#a7a3ac" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+
+  <text x="210" y="214" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#f7f6f8">Suas escolhas estão</text>
+  <text x="210" y="238" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#f7f6f8">confirmadas</text>
+  <text x="210" y="262" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#a7a3ac">Você já adicionou suas 2 músicas a Sexta de</text>
+  <text x="210" y="278" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#a7a3ac">Verão. Valeu pelas escolhas — te vejo na pista.</text>
+
+  <rect x="30" y="306" width="360" height="60" rx="14" fill="#201e26"/>
+  <rect x="44" y="318" width="36" height="36" rx="9" fill="url(#thumb1)"/>
+  <text x="90" y="334" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#f7f6f8">Erro Gostoso</text>
+  <text x="90" y="350" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#a7a3ac">Marília Mendonça · 3:12</text>
+  <circle cx="356" cy="336" r="11" fill="#7bdba3"/>
+  <path d="M351 336l3.5 3.5L361 332" stroke="#0b1f14" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <rect x="30" y="374" width="360" height="60" rx="14" fill="#201e26"/>
+  <rect x="44" y="386" width="36" height="36" rx="9" fill="url(#thumb2)"/>
+  <text x="90" y="402" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#f7f6f8">Evidências</text>
+  <text x="90" y="418" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#a7a3ac">Chitãozinho &amp; Xororó · 4:21</text>
+  <circle cx="356" cy="404" r="11" fill="#7bdba3"/>
+  <path d="M351 404l3.5 3.5L361 400" stroke="#0b1f14" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <rect x="30" y="600" width="360" height="50" rx="14" fill="#201e26" stroke="#38343f"/>
+  <text x="210" y="630" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#f7f6f8">Abrir playlist no YouTube Music</text>
+</svg>

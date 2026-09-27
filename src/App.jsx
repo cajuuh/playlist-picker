@@ -148,33 +148,18 @@ export default function App() {
     }
   }
 
-  // On desktop the layout splits into a poster pane + a content column. The
-  // poster pane needs the playlist to have loaded and isn't shown for the
-  // pre-app states (intro, host-not-ready).
-  const showBrand = !!playlist && screen !== 'loading' && screen !== 'unavailable';
+  // Search and Landing spread past reading width on desktop (results + picks
+  // rail; poster + form). Every other screen stays a centered column.
+  const wide = screen === 'search' || screen === 'landing';
 
   return (
-    <div className={`app-shell${showBrand ? ' app-shell--split' : ''}`}>
-      {showBrand && (
-        <aside className="brand-pane">
-          <div className="brand-aurora brand-aurora--a" />
-          <div className="brand-aurora brand-aurora--b" />
-          <div className="brand-aurora brand-aurora--c" />
-          <div className="brand-inner">
-            <div className="brand-cover">
-              <svg width="72" height="72" viewBox="0 0 24 24" fill="none">
-                <path d="M9 18V6l11-2v12" stroke="oklch(98% 0.01 280)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                <circle cx="6" cy="18" r="3" stroke="oklch(98% 0.01 280)" strokeWidth="1.6" />
-                <circle cx="17" cy="16" r="3" stroke="oklch(98% 0.01 280)" strokeWidth="1.6" />
-              </svg>
-            </div>
-            <p className="display brand-title">{playlist?.name || 'A Playlist'}</p>
-            <p className="brand-tagline">Cada um escolhe 2 músicas. Capriche.</p>
-          </div>
-        </aside>
-      )}
+    <div className="app-shell">
+      <div
+        className="app-backdrop"
+        style={playlist?.cover ? { '--backdrop-img': `url(${playlist.cover})` } : undefined}
+      />
 
-      <main className="app-frame">
+      <main className={`app-frame${wide ? ' app-frame--wide' : ''}`}>
         {screen === 'loading' && <Intro exiting={introExiting} />}
         {screen === 'unavailable' && <Unavailable />}
         {screen === 'landing' && <Landing playlist={playlist} onJoin={handleJoin} />}
