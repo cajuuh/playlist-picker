@@ -16,6 +16,21 @@ Single Vercel project:
 The frontend and API deploy together (same origin, no CORS needed) and
 friends never touch your Google account — only you authorize once.
 
+## Screens
+
+A friend opens the link, joins with just a name and phone number, picks 2
+songs, and confirms — that's the whole flow:
+
+<table>
+  <tr>
+    <td align="center"><img src="docs/screens/landing.svg" width="200" alt="Landing screen: join with name and phone"><br><sub>Join</sub></td>
+    <td align="center"><img src="docs/screens/search.svg" width="200" alt="Search screen: search and pick 2 songs"><br><sub>Search &amp; pick</sub></td>
+    <td align="center"><img src="docs/screens/review.svg" width="200" alt="Review screen: confirm the 2 picks"><br><sub>Review</sub></td>
+    <td align="center"><img src="docs/screens/success.svg" width="200" alt="Success screen: picks added to the playlist"><br><sub>Success</sub></td>
+    <td align="center"><img src="docs/screens/locked.svg" width="200" alt="Locked screen: already used both picks"><br><sub>Already picked</sub></td>
+  </tr>
+</table>
+
 ## 1. Create a Supabase project
 
 1. Go to [supabase.com](https://supabase.com/) and create a free account

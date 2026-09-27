@@ -135,10 +135,21 @@ export async function addToPlaylist(videoId) {
 export async function getPlaylistInfo() {
   await ensureLoaded();
   const playlistId = process.env.YOUTUBE_PLAYLIST_ID;
-  const res = await youtube.playlists.list({ part: ['snippet'], id: [playlistId] });
+  const res = await youtube.playlists.list({
+    part: ['snippet', 'contentDetails'],
+    id: [playlistId],
+  });
   const item = res.data.items?.[0];
+  const thumbs = item?.snippet?.thumbnails || {};
+  const coverUrl =
+    (thumbs.maxres || thumbs.standard || thumbs.high || thumbs.medium || thumbs.default)?.url ||
+    '';
   return {
     name: item?.snippet?.title || 'The Playlist',
     url: `https://music.youtube.com/playlist?list=${playlistId}`,
+    // YouTube hands back a grey "no_thumbnail" placeholder for art-less
+    // playlists — treat that as no cover so the UI uses its own fallback.
+    cover: coverUrl.includes('no_thumbnail') ? '' : coverUrl,
+    trackCount: item?.contentDetails?.itemCount ?? null,
   };
 }

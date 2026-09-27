@@ -1,14 +1,68 @@
 :root {
-  --bg: oklch(16% 0.02 280);
-  --bg-elevated: oklch(21% 0.025 280);
-  --bg-raised: oklch(25% 0.03 280);
-  --text: oklch(96% 0.01 280);
-  --text-muted: oklch(68% 0.02 280);
+  color-scheme: dark;
+
+  /* ===== Surfaces — flat, low-chroma neutrals (YT Music-ish) ===== */
+  --bg: oklch(15% 0.005 285);
+  --bg-elevated: oklch(20% 0.006 285);
+  --bg-raised: oklch(25% 0.008 285);
+  --bg-hover: oklch(29% 0.01 285);
+  --border: oklch(32% 0.01 285);
+  --border-strong: oklch(42% 0.012 285);
+  --scrim: oklch(15% 0.005 285 / 0.72);
+
+  /* ===== Text ===== */
+  --text: oklch(97% 0 0);
+  --text-muted: oklch(68% 0.008 285);
+  --text-faint: oklch(56% 0.008 285);
+
+  /* ===== Accent (single) + positive ===== */
   --accent: oklch(72% 0.23 350);
   --accent-ink: oklch(15% 0.02 350);
-  --accent-2: oklch(88% 0.21 125);
-  --accent-2-ink: oklch(15% 0.02 125);
-  --border: oklch(30% 0.03 280);
+  --accent-soft: oklch(72% 0.23 350 / 0.14);
+  --positive: oklch(80% 0.16 155);
+  --positive-ink: oklch(20% 0.04 155);
+
+  /* ===== Spacing scale ===== */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 48px;
+
+  /* ===== Radius ===== */
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-pill: 999px;
+
+  /* ===== Elevation ===== */
+  --shadow-1: 0 1px 2px oklch(0% 0 0 / 0.3);
+  --shadow-2: 0 8px 24px -8px oklch(0% 0 0 / 0.45);
+  --shadow-3: 0 24px 60px -16px oklch(0% 0 0 / 0.55);
+
+  /* ===== Type scale ===== */
+  --fs-caption: 12px;
+  --fs-body-sm: 13px;
+  --fs-body: 15px;
+  --fs-title: clamp(16px, 0.6vw + 14px, 19px);
+  --fs-h2: clamp(22px, 2vw + 14px, 30px);
+  --fs-h1: clamp(28px, 4vw + 16px, 44px);
+
+  /* ===== Layout ===== */
+  --content-max: 1080px;
+  --reading-max: 640px;
+  --rail-w: 340px;
+  --header-h: 64px;
+
+  /* ===== Motion ===== */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-1: 140ms;
+  --dur-2: 240ms;
+
   --font-display: 'Space Grotesk', system-ui, sans-serif;
   --font-body: 'Manrope', system-ui, sans-serif;
 }
@@ -45,7 +99,7 @@ h3,
 }
 
 a {
-  color: var(--accent-2);
+  color: var(--text);
 }
 
 a:hover {
@@ -66,11 +120,13 @@ input {
 }
 
 input::placeholder {
-  color: var(--text-muted);
+  color: var(--text-faint);
 }
 
-input:focus,
-button:focus-visible {
+input:focus-visible,
+button:focus-visible,
+a:focus-visible,
+[role='button']:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }

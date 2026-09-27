@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="700" viewBox="0 0 420 700">
+  <defs>
+    <linearGradient id="cover" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7c4dff"/>
+      <stop offset="1" stop-color="#ff6bcb"/>
+    </linearGradient>
+    <linearGradient id="thumb1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8a3d"/><stop offset="1" stop-color="#ff5f5f"/></linearGradient>
+    <linearGradient id="thumb2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4ea1ff"/><stop offset="1" stop-color="#7c4dff"/></linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#7bdba3" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#7bdba3" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect x="10" y="10" width="400" height="680" rx="28" fill="#16151b" stroke="#38343f"/>
+
+  <circle cx="210" cy="170" r="90" fill="url(#glow)"/>
+  <circle cx="210" cy="170" r="42" fill="#7bdba3"/>
+  <path d="M191 171l13 13 24 -26" stroke="#0b1f14" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <text x="210" y="254" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="23" font-weight="700" fill="#f7f6f8">Você tá na lista</text>
+
+  <text x="210" y="280" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#a7a3ac">Adicionadas a</text>
+  <rect x="163" y="292" width="18" height="18" rx="5" fill="url(#cover)"/>
+  <text x="187" y="306" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#f7f6f8">Sexta de Verão</text>
+
+  <rect x="30" y="336" width="360" height="60" rx="14" fill="#201e26"/>
+  <rect x="44" y="348" width="36" height="36" rx="9" fill="url(#thumb1)"/>
+  <text x="90" y="364" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#f7f6f8">Ai Se Eu Te Pego</text>
+  <text x="90" y="380" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#a7a3ac">Michel Teló · 2:58</text>
+
+  <rect x="30" y="404" width="360" height="60" rx="14" fill="#201e26"/>
+  <rect x="44" y="416" width="36" height="36" rx="9" fill="url(#thumb2)"/>
+  <text x="90" y="432" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#f7f6f8">Evidências</text>
+  <text x="90" y="448" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#a7a3ac">Chitãozinho &amp; Xororó · 4:21</text>
+
+  <rect x="30" y="600" width="360" height="52" rx="26" fill="#ff5fa8"/>
+  <text x="210" y="632" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#2a0e1c">Abrir no YouTube Music</text>
+  <text x="210" y="668" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#86818c">Você já usou suas 2 escolhas. Te vejo na pista.</text>
+</svg>
