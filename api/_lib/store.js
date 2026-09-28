@@ -47,3 +47,37 @@ export async function releaseReservation(phone, count) {
   const { error } = await supabase.rpc('release_reservation', { p_phone: key, p_count: count });
   if (error) throw error;
 }
+
+export async function isGuest(phone) {
+  const key = normalizePhone(phone);
+  if (!key) return false;
+  const { data, error } = await supabase
+    .from('guests')
+    .select('phone')
+    .eq('phone', key)
+    .maybeSingle();
+  if (error) throw error;
+  return Boolean(data);
+}
+
+export async function listGuests() {
+  const { data, error } = await supabase
+    .from('guests')
+    .select('phone, name, created_at')
+    .order('created_at', { ascending: false });
+  if (error) throw error;
+  return data;
+}
+
+export async function addGuest(phone, name) {
+  const key = normalizePhone(phone);
+  if (!key) throw new Error('Phone number required');
+  const { error } = await supabase.from('guests').upsert({ phone: key, name: name.trim() });
+  if (error) throw error;
+}
+
+export async function removeGuest(phone) {
+  const key = normalizePhone(phone);
+  const { error } = await supabase.from('guests').delete().eq('phone', key);
+  if (error) throw error;
+}

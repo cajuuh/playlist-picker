@@ -7,6 +7,7 @@ import Review from './screens/Review.jsx';
 import Success from './screens/Success.jsx';
 import Locked from './screens/Locked.jsx';
 import Unavailable from './screens/Unavailable.jsx';
+import NotInvited from './screens/NotInvited.jsx';
 import './App.css';
 
 const STORAGE_KEY = 'playlist-picker:friend';
@@ -34,6 +35,9 @@ function storeFriend(friend) {
 async function determineRoute(person) {
   try {
     const status = await getStatus(person.phone);
+    if (!status.invited) {
+      return { screen: 'notinvited' };
+    }
     if (status.remaining <= 0) {
       return { screen: 'locked', lockedTracks: status.tracks };
     }
@@ -140,6 +144,8 @@ export default function App() {
         const status = await getStatus(friend.phone).catch(() => null);
         setLockedTracks(status?.tracks || []);
         setScreen('locked');
+      } else if (err.status === 403) {
+        setScreen('notinvited');
       } else {
         setSubmitError(err.message);
       }
@@ -184,6 +190,7 @@ export default function App() {
           <Success playlist={playlist} tracks={submitResult?.added || selectedTracks} />
         )}
         {screen === 'locked' && <Locked playlist={playlist} tracks={lockedTracks} />}
+        {screen === 'notinvited' && <NotInvited />}
       </main>
     </div>
   );
