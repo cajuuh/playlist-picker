@@ -17,8 +17,11 @@ Single Vercel project:
 - `/src` — React (Vite) frontend
 - `/api` — serverless functions: YouTube Data API v3 search, playlist
   inserts, and status/submit routes backed by Supabase
-- `/supabase/schema.sql` — the two tables + Postgres functions the API
-  routes depend on
+- `/supabase/schema.sql` — the tables + Postgres functions the API routes
+  depend on
+- `/admin.html` — a separate, password-protected page (`/admin.html` once
+  deployed) where you manage the guest list: only the name + phone numbers
+  added there can join and submit picks
 
 The frontend and API deploy together (same origin, no CORS needed) and
 friends never touch your Google account — only you authorize once.
@@ -44,8 +47,8 @@ songs, and confirms — that's the whole flow:
    and a new project.
 2. Once it's provisioned, open **SQL Editor > New query**, paste in the
    contents of [`supabase/schema.sql`](supabase/schema.sql), and run it.
-   This creates two tables (`youtube_auth`, `submissions`) and the Postgres
-   functions the API uses to enforce the 2-song limit atomically.
+   This creates the tables (`youtube_auth`, `submissions`, `guests`) and the
+   Postgres functions the API uses to enforce the 2-song limit atomically.
 3. Get your credentials from **Project Settings** (Supabase has split this
    across two pages recently):
    - **Data API** page → the **API URL** shown there → `SUPABASE_URL`
@@ -99,6 +102,11 @@ playlist. This is a one-time setup only you do — friends never touch Google.
 Open your playlist in YouTube Music or YouTube, and copy the ID from the
 URL: `https://music.youtube.com/playlist?list=THIS_PART_HERE`.
 
+## 3b. Pick an admin password
+
+Set `ADMIN_PASSWORD` to anything — it protects `/admin.html`, the page
+where you manage the guest list (see below).
+
 ## 4. Configure environment variables
 
 ```bash
@@ -146,13 +154,22 @@ Then in the Vercel dashboard, go to your project's **Settings >
 Environment Variables** and add everything from your `.env` file
 (`GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REDIRECT_URI` — update
 this one to your production callback URL, `YOUTUBE_PLAYLIST_ID`,
-`SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`), then redeploy so the new
-values take effect. Once it's live, repeat step 6 against your production
-URL (`https://YOUR-APP.vercel.app/api/auth/google`) to authorize the
-deployed app — the local connection from step 6 only applies to local dev.
+`SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `ADMIN_PASSWORD`), then
+redeploy so the new values take effect. Once it's live, repeat step 6
+against your production URL (`https://YOUR-APP.vercel.app/api/auth/google`)
+to authorize the deployed app — the local connection from step 6 only
+applies to local dev.
 
 Now you can share `https://YOUR-APP.vercel.app` with friends anywhere, not
 just your local network.
+
+## 8. Manage the guest list
+
+Go to `https://YOUR-APP.vercel.app/admin.html`, enter `ADMIN_PASSWORD`, and
+add each guest's name + phone number. Only phones on this list (or that
+already have picks in from before they were added/removed) can join and
+submit songs — anyone else sees a "not on the list" screen. Use the same
+page to remove someone if you added them by mistake.
 
 ## How the 2-song limit works
 

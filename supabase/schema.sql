@@ -15,6 +15,15 @@ create table if not exists submissions (
   updated_at timestamptz not null default now()
 );
 
+-- The admin-managed guest list: only phones in here (or already present in
+-- `submissions`, so nobody who already picked songs gets locked out
+-- retroactively) are allowed to join and submit picks.
+create table if not exists guests (
+  phone text primary key,
+  name text not null,
+  created_at timestamptz not null default now()
+);
+
 -- Atomically reserves `p_count` slots for a phone number, creating its row
 -- if needed. Returns false if fewer than `p_count` slots remain out of 2.
 -- The UPDATE takes a row lock in Postgres, so two concurrent submissions
@@ -69,3 +78,4 @@ $$;
 -- bypasses RLS by design.
 alter table youtube_auth enable row level security;
 alter table submissions enable row level security;
+alter table guests enable row level security;
